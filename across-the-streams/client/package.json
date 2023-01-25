@@ -2,7 +2,7 @@
   "name": "across-the-streams",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.sie.sony.com/pages/xcruzaguilera/across-the-streams",
+  "homepage": "https://github.sie.sony.com/pages/xcruzaguilera/acrossTheStreams",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
