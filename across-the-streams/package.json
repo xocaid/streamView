@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "across-the-streams",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://github.sie.sony.com/pages/xcruzaguilera/across-the-streams",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
