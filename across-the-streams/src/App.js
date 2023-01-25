@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      Across the Streams!
+      <h1>Across the Streams!</h1>
       </header>
     </div>
   );
