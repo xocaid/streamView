@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SingleStream from './singleStream';
 
 
 function MainPg() {
@@ -15,6 +16,8 @@ function MainPg() {
                 setStreams(data);
             });
     };
+
+    useEffect(fetchStreams, []);
 
     //FILTER FUNCTION - SEARCH BAR
     const filterStreams = event => {
@@ -38,6 +41,7 @@ function MainPg() {
 
             <div>
                 Stream Info Div
+                <SingleStream />
             </div>
         </div>
     )
