@@ -4,6 +4,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 const CLIENT_ID = process.env.REACT_APP_TWITCH_CLIENT_ID;
+
 const CLIENT_SECRET = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
 
 let accessToken;
@@ -32,14 +33,12 @@ const getAccessToken = async () => {
     }
 };
 
-
-
-
-
 function MainPg() {
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
 
+    console.log(CLIENT_ID)
+    console.log(CLIENT_SECRET)
     //FETCHING DATA - TWITCH TV API
     const fetchStreams = () => {
         fetch('https://api.twitch.tv/helix/search/channels')
@@ -64,7 +63,6 @@ function MainPg() {
         //setStreams(filteredStreams) displays filtered streams from search bar
         setStreams(filteredStreams)
     }
-
 
     return (
         <div>MainPg Div
