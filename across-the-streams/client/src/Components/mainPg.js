@@ -1,56 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import SingleStream from './singleStream';
-import axios from 'axios';
-import qs from 'qs';
-
-const CLIENT_ID = process.env.REACT_APP_TWITCH_CLIENT_ID;
-
-const CLIENT_SECRET = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
-
-let accessToken;
-
-const getAccessToken = async () => {
-    try {
-        const res = await axios.post(
-            //Twitch TV Developers: Client Credentials Grant Flow
-            //To get access token, need to send HTTP POST request to site below:
-            'https://id.twitch.tv/oauth2/token',
-            qs.stringify({
-                //per documentation: Registered Client ID & Secret are set
-                //Per documentation: grant_type is set to string and MUST be set to client_credentials
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET,
-                grant_type: 'client_credentials',
-
-            })
-        );
-        accessToken = res.data;
-    } catch (error) {
-        //Note: error is an object, generic, and it won't always get you the info on what's wrong
-        console.log(error);
-        //Note: error.message is standard practice, that will return the error message, error description that should explain what error happened
-        console.log(error.message);
-    }
-};
+import { APIContext } from './api';
 
 function MainPg() {
+    const {accessToken} = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
-
-    console.log(CLIENT_ID)
-    console.log(CLIENT_SECRET)
+    console.log(accessToken);
+    // console.log(CLIENT_ID)
+    // console.log(CLIENT_SECRET)
     //FETCHING DATA - TWITCH TV API
-    const fetchStreams = () => {
-        fetch('https://api.twitch.tv/helix/search/channels')
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setSearchStreams(data);
-                setStreams(data);
-            });
-    };
+    // const fetchStreams = () => {
+    //     fetch('https://api.twitch.tv/helix/search/channels')
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log(data);
+    //             setSearchStreams(data);
+    //             setStreams(data);
+    //         });
+    // };
 
-    useEffect(fetchStreams, []);
+    // useEffect(fetchStreams, []);
 
     //FILTER FUNCTION - SEARCH BAR
     const filterStreams = event => {
