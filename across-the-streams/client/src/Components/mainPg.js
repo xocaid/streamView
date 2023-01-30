@@ -8,14 +8,15 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
-    console.log(accessToken);
+
 
     //FETCHING DATA - TWITCH TV API
-    const fetchData = () => {
-        fetch('https://api.twitch.tv/helix/search/channels',
+    const fetchData = async () => {
+        console.log(`TESTTTTTT, ${JSON.stringify(accessToken)}`);
+        await fetch('https://api.twitch.tv/helix/search/channels',
             {
                 headers: {
-                    Authorization: `Bearer accessToken`,
+                    'Authorization': `Bearer ${accessToken.access_token}`,
                     'Client-Id': process.env.CLIENT_ID
                 }
             }
@@ -27,10 +28,11 @@ function MainPg() {
                 setStreams(data);
             });
     };
-
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (accessToken) {
+            fetchData();
+        }
+    }, [accessToken]);
     if (!streams) {
         return <div>
             Loading..
