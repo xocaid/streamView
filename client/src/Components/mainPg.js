@@ -13,22 +13,22 @@ function MainPg() {
 
     //FETCHING DATA - TWITCH TV API
     const fetchData = async () => {
-        console.log(`TESTTTTTT, ${JSON.stringify(accessToken)}`);
+        console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
         await axios.get('https://api.twitch.tv/helix/search/channels',
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken.access_token}`,
                     'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
                 },
-                params:{
+                params: {
                     query: 'game',
                 }
             }
         )
             .then((response) => {
-                console.log(response);
-                setSearchStreams(response);
-                setStreams(response);
+                console.log(response.data.data);
+                setSearchStreams(response.data.data);
+                setStreams(response.data.data);
             });
     };
     useEffect(() => {
@@ -65,7 +65,11 @@ function MainPg() {
 
                 <div>
                     Stream Info Div
-                    <SingleStream />
+                    {searchStreams.map((stream, index) => {
+                        return (
+                            <SingleStream key={index} singleCardP={stream}/>
+                        )
+                    })}
                 </div>
             </div>
         )

@@ -13,7 +13,7 @@ function App() {
   //useEffect Hook tells React that your component needs to do something after render.
   //
   useEffect(() => {
-    console.log('Vlad console', JSON.stringify(accessToken))
+    console.log('Print accessToken from App.js', JSON.stringify(accessToken))
     //ANONYMOUS FX: Use it once & done
     //useEffect(() => {}, []);
 
