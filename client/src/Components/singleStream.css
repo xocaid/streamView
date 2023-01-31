@@ -1,0 +1,16 @@
+.singleStream-img {
+    top: 80px;
+    left: 0;
+    width: 200px;
+    height: 100px;
+}
+
+.singleStream-live {
+    width: 10%;
+    height: 10%;
+}
+
+.singleStream-offline {
+    width: 5%;
+    height: 5%;
+}

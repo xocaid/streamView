@@ -48,12 +48,12 @@ function MainPg() {
         const filterStreams = event => {
             const value = event.target.value.toLowerCase();
             const filteredStreams = searchStreams.filter(
-                stream => (`${stream.name} ${stream.extra.address}`
+                stream => (`${stream.display_name} ${stream.game_name} ${stream.tags} ${stream.broadcaster_language}`
                     .toLowerCase()
                     .includes(value))
             )
             //setStreams(filteredStreams) displays filtered streams from search bar
-            setStreams(filteredStreams)
+            setSearchStreams(filteredStreams)
         }
 
         return (
