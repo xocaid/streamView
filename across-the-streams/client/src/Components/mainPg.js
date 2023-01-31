@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import SingleStream from './singleStream';
 import { APIContext } from './api';
+import axios from 'axios';
 
 
 function MainPg() {
@@ -13,19 +14,21 @@ function MainPg() {
     //FETCHING DATA - TWITCH TV API
     const fetchData = async () => {
         console.log(`TESTTTTTT, ${JSON.stringify(accessToken)}`);
-        await fetch('https://api.twitch.tv/helix/search/channels',
+        await axios.get('https://api.twitch.tv/helix/search/channels',
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken.access_token}`,
-                    'Client-Id': process.env.CLIENT_ID
+                    'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
+                },
+                params:{
+                    query: 'game',
                 }
             }
         )
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                setSearchStreams(data);
-                setStreams(data);
+            .then((response) => {
+                console.log(response);
+                setSearchStreams(response);
+                setStreams(response);
             });
     };
     useEffect(() => {
