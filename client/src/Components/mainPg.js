@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
+import './mainPg.css';
 
 
 function MainPg() {
@@ -57,8 +58,8 @@ function MainPg() {
         }
 
         return (
-            <div>MainPg Div
-                <div>
+            <div className='mainpg-div'>MainPg Div
+                <div className='searchbar-div'>
                     Search Bar Div
                     <input className='search-bar' placeholder='Search Streams...' onInput={filterStreams}></input>
                 </div>

@@ -1,0 +1,12 @@
+.mainpg-div{
+margin: 5px;
+border: 5px blue dashed;
+}
+.searchbar-div{
+    margin: 5px;
+    border: 5px black dashed;
+}
+.search-bar{
+    width: 97%;
+    align-items: center;
+}

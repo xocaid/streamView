@@ -1,13 +1,21 @@
-.singleStream-img {
-    top: 80px;
-    left: 0;
-    width: 200px;
-    height: 100px;
+.singleStream-div {
+    border: 5px black solid;
+    margin: 10px;
+    display: flex;
+}
+
+.singleStream-general {
+    background-color: pink;
+    text-align: justify;
+    margin: 8px;
+}
+.singleStream-img{
+    margin: 8px;
 }
 
 .singleStream-live {
-    width: 10%;
-    height: 10%;
+    width: 12%;
+    height: 12%;
 }
 
 .singleStream-offline {
