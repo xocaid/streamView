@@ -3,6 +3,7 @@ import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
 import './mainPg.css';
+import PageBtn from './pageBtn';
 
 
 function MainPg() {
@@ -15,7 +16,7 @@ function MainPg() {
     //FETCHING DATA - TWITCH TV API
     const fetchData = async () => {
         console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
-        await axios.get('https://api.twitch.tv/helix/search/channels',
+        await axios.get('https://api.twitch.tv/helix/search/channels?',
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken.access_token}`,
@@ -27,7 +28,7 @@ function MainPg() {
             }
         )
             .then((response) => {
-                console.log(response.data.data);
+                console.log(response);
                 setSearchStreams(response.data.data);
                 setStreams(response.data.data);
             });
@@ -65,7 +66,8 @@ function MainPg() {
                 </div>
 
                 <div>
-                    Stream Info Div
+                  <h1>Stream Info Div</h1>  
+                    <PageBtn />
                     {searchStreams.map((stream, index) => {
                         return (
                             <SingleStream key={index} singleCardP={stream}/>

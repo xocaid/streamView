@@ -1,10 +1,11 @@
 .mainpg-div{
-margin: 5px;
+margin: 15px;
 border: 5px blue dashed;
 }
 .searchbar-div{
     margin: 5px;
     border: 5px black dashed;
+    padding: 10px;
 }
 .search-bar{
     width: 97%;
