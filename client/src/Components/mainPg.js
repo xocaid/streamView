@@ -15,7 +15,7 @@ function MainPg() {
     //User's current page
     const [currentPg, setCurrentPg] = useState(1);
     //Streams displayed per page
-    const [streamsPerPg] = useState(6)
+    const [streamsPerPg] = useState(2)
 
     //1st & Last Stream of current pg
     const indexofLastStream = currentPg * streamsPerPg;
@@ -24,29 +24,29 @@ function MainPg() {
     const currentStreams = streams.slice(indexOfFirstStream, indexofLastStream);
     //Number of pages
     //Math.ceil() rounds up
-    const totalPgs = Math.ceil(streams.length / streamsPerPg);
+    const totalPgs = Math.ceil(searchStreams.length / streamsPerPg);
 
     //FETCHING DATA - TWITCH TV API
-    const fetchData = async () => {
-        console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
-        await axios.get('https://api.twitch.tv/helix/search/channels?',
-            {
-                headers: {
-                    'Authorization': `Bearer ${accessToken.access_token}`,
-                    'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
-                },
-                params: {
-                    query: 'game',
-                }
-            }
-        )
-            .then((response) => {
-                console.log(response);
-                setSearchStreams(response.data.data);
-                setStreams(response.data.data);
-            });
-    };
     useEffect(() => {
+        const fetchData = async () => {
+            console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
+            await axios.get('https://api.twitch.tv/helix/search/channels?',
+                {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken.access_token}`,
+                        'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
+                    },
+                    params: {
+                        query: 'game',
+                    }
+                }
+            )
+                .then((response) => {
+                    console.log(response);
+                    setSearchStreams(response.data.data);
+                    setStreams(response.data.data);
+                });
+        };
         if (accessToken) {
             fetchData();
         }
@@ -56,8 +56,6 @@ function MainPg() {
             Loading..
         </div>;
     } else {
-
-
 
         //FILTER FUNCTION - SEARCH BAR
         const filterStreams = event => {
