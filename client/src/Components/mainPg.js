@@ -11,7 +11,20 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
+    //PAGINATION
+    //User's current page
+    const [currentPg, setCurrentPg] = useState(1);
+    //Streams displayed per page
+    const [streamsPerPg] = useState(6)
 
+    //1st & Last Stream of current pg
+    const indexofLastStream = currentPg * streamsPerPg;
+    const indexOfFirstStream = indexofLastStream - streamsPerPg;
+    //Streams to be displayed on current pg
+    const currentStreams = streams.slice(indexOfFirstStream, indexofLastStream);
+    //Number of pages
+    //Math.ceil() rounds up
+    const totalPgs = Math.ceil(streams.length / streamsPerPg);
 
     //FETCHING DATA - TWITCH TV API
     const fetchData = async () => {
@@ -66,11 +79,11 @@ function MainPg() {
                 </div>
 
                 <div>
-                  <h1>Stream Info Div</h1>  
-                    <PageBtn />
+                    <h1>Stream Info Div</h1>
+                    <PageBtn totalPgs={totalPgs} currentPg={currentPg} setCurrentPg={setCurrentPg} />
                     {searchStreams.map((stream, index) => {
                         return (
-                            <SingleStream key={index} singleCardP={stream}/>
+                            <SingleStream key={index} singleCardP={stream} />
                         )
                     })}
                 </div>
