@@ -30,7 +30,7 @@ function MainPg() {
     useEffect(() => {
         const fetchData = async () => {
             console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
-            await axios.get('https://api.twitch.tv/helix/search/channels?',
+            await axios.get(`https://api.twitch.tv/helix/search/channels`,
                 {
                     headers: {
                         'Authorization': `Bearer ${accessToken.access_token}`,
@@ -82,6 +82,7 @@ function MainPg() {
                     {searchStreams.map((stream, index) => {
                         return (
                             <SingleStream key={index} singleCardP={stream} />
+
                         )
                     })}
                 </div>

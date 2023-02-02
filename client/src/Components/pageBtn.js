@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PageBtn({ totalPgs, currentPg, setCurrentPg }) {
+function PageBtn({ totalPgs, currentPg, setCurrentPg}) {
     //Array that holds all the page #s
     const pgNums = [...Array(totalPgs + 1).keys()].slice(1);
 
@@ -28,4 +28,4 @@ function PageBtn({ totalPgs, currentPg, setCurrentPg }) {
     )
 }
 
-export default PageBtn
+export default PageBtn;
