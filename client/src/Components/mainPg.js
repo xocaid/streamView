@@ -11,12 +11,12 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
+
     //PAGINATION
     //User's current page
     const [currentPg, setCurrentPg] = useState(1);
     //Streams displayed per page
     const [streamsPerPg] = useState(2)
-
     //1st & Last Stream of current pg
     const indexofLastStream = currentPg * streamsPerPg;
     const indexOfFirstStream = indexofLastStream - streamsPerPg;
@@ -29,23 +29,26 @@ function MainPg() {
     //FETCHING DATA - TWITCH TV API
     useEffect(() => {
         const fetchData = async () => {
-            console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
-            await axios.get(`https://api.twitch.tv/helix/search/channels`,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken.access_token}`,
-                        'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
-                    },
-                    params: {
-                        query: 'game',
+            try {
+                console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
+                const response = await axios.get(`https://api.twitch.tv/helix/search/channels?`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken.access_token}`,
+                            'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
+                        },
+                        params: {
+                            query: 'game',
+                        }
                     }
-                }
-            )
-                .then((response) => {
-                    console.log(response);
-                    setSearchStreams(response.data.data);
-                    setStreams(response.data.data);
-                });
+                )
+                console.log(response.data);
+                setSearchStreams(response.data.data);
+                setStreams(response.data.data);
+            } catch (error) {
+                console.error(error);
+                console.log('Error cannot print page.');
+            }
         };
         if (accessToken) {
             fetchData();
@@ -53,7 +56,7 @@ function MainPg() {
     }, [accessToken]);
     if (!streams) {
         return <div>
-            Loading..
+            Loading...
         </div>;
     } else {
 
