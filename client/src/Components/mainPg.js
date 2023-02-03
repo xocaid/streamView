@@ -11,7 +11,8 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
-
+    const [cursor, setCursor] = useState('');
+    console.log('This is the cursor variable: ', cursor);
     //PAGINATION
     //User's current page
     // const [currentPg, setCurrentPg] = useState(1);
@@ -44,6 +45,8 @@ function MainPg() {
             console.log(response.data);
             setStreams(response.data.data);
             setSearchStreams(response.data.data);
+            setCursor(response.data.pagination.cursor)
+
         } catch (error) {
             console.error(error);
             console.log('Error cannot print page.');
