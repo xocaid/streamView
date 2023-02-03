@@ -20,7 +20,7 @@ function App() {
     //NAMED FX: Used multiple times throughout code
     //const namedFunction = () => {};
     //useEffect(namedFunction, []);
-    
+
     //Should only run once because of dependency array....runs once because of the dependecy array being empty
     //How getAccessToken is being saved into the useState, it will update all it's children
     //It is being updated via built in methods such as useState, useState will receive update and then gives the updates to its children, updating the values.
@@ -30,22 +30,27 @@ function App() {
   },
     []);
 
-  return (
-    //APIContext.Provider value prop from useState variable; value you want to pass to all the components reading this context inside this provider.
-    //APIContext.Provider specifies the conttext value 
-    //Provider needs to wrap around all components that will use the accessToken, so all can access the necessary info.
-    // {{ }} FUTURE PROOF: Storing more than 1 piece of info; 1st {} goes into the JS layer; 2nd {} goes into JS Object.
-    //Context is being wrapped by .Provider, BUT NOT using useContext, so there is no need to import  useContext from react.
-    <APIContext.Provider value={{ accessToken }}>
-      <div className="App">
-        <Header />
-        <MainPg />
-        <Footer />
-      </div>
-    </APIContext.Provider>
-  );
+  if (!accessToken) {
+    return <div>
+      Loading...
+    </div>;
+  } else {
+    return (
+      //APIContext.Provider value prop from useState variable; value you want to pass to all the components reading this context inside this provider.
+      //APIContext.Provider specifies the conttext value 
+      //Provider needs to wrap around all components that will use the accessToken, so all can access the necessary info.
+      // {{ }} FUTURE PROOF: Storing more than 1 piece of info; 1st {} goes into the JS layer; 2nd {} goes into JS Object.
+      //Context is being wrapped by .Provider, BUT NOT using useContext, so there is no need to import  useContext from react.
+      <APIContext.Provider value={{ accessToken }}>
+        <div className="App">
+          <Header />
+          <MainPg />
+          <Footer />
+        </div>
+      </APIContext.Provider>
+    );
+  }
 }
-
 export default App;
 
 /*
