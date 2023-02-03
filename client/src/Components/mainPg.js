@@ -3,7 +3,7 @@ import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
 import './mainPg.css';
-import PageBtn from './pageBtn';
+// import PageBtn from './pageBtn';
 
 
 function MainPg() {
@@ -42,8 +42,8 @@ function MainPg() {
                 }
             )
             console.log(response.data);
-            setSearchStreams(response.data.data);
             setStreams(response.data.data);
+            setSearchStreams(response.data.data);
         } catch (error) {
             console.error(error);
             console.log('Error cannot print page.');
@@ -65,7 +65,7 @@ function MainPg() {
                 .includes(value))
         )
         //setStreams(filteredStreams) displays filtered streams from search bar
-        setSearchStreams(filteredStreams)
+        setStreams(filteredStreams);
     }
 
     return (
@@ -78,7 +78,7 @@ function MainPg() {
             <div>
                 <h1>Stream Info Div</h1>
                 {/* <PageBtn totalPgs={totalPgs} currentPg={currentPg} setCurrentPg={setCurrentPg} /> */}
-                {searchStreams.map((stream, index) => {
+                {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />
 
