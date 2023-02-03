@@ -21,6 +21,7 @@ function MainPg() {
     const indexofLastStream = currentPg * streamsPerPg;
     const indexOfFirstStream = indexofLastStream - streamsPerPg;
     //Streams to be displayed on current pg
+    //*******Currently not being called anywhere - but when I call it in singleStream component doesn't work */
     const currentStreams = streams.slice(indexOfFirstStream, indexofLastStream);
     //Number of pages
     //Math.ceil() rounds up
