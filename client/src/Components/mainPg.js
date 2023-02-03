@@ -3,7 +3,7 @@ import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
 import './mainPg.css';
-// import PageBtn from './pageBtn';
+import BtnPg from './BtnPg';
 
 
 function MainPg() {
@@ -11,22 +11,10 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
-    const [cursor, setCursor] = useState('');
+    const [cursor, setCursor] = useState(null);
     console.log('This is the cursor variable: ', cursor);
     //PAGINATION
-    //User's current page
-    // const [currentPg, setCurrentPg] = useState(1);
-    // //Streams displayed per page
-    // const [streamsPerPg] = useState(2)
-    // //1st & Last Stream of current pg
-    // const indexofLastStream = currentPg * streamsPerPg;
-    // const indexOfFirstStream = indexofLastStream - streamsPerPg;
-    // //Streams to be displayed on current pg
-    // //*******Currently not being called anywhere - but when I call it in singleStream component doesn't work */
-    // const currentStreams = streams.slice(indexOfFirstStream, indexofLastStream);
-    // //Number of pages
-    // //Math.ceil() rounds up
-    // const totalPgs = Math.ceil(searchStreams.length / streamsPerPg);
+ 
 
     //FETCHING DATA - TWITCH TV API
     const fetchData = async queryParams => {
@@ -80,7 +68,7 @@ function MainPg() {
 
             <div>
                 <h1>Stream Info Div</h1>
-                {/* <PageBtn totalPgs={totalPgs} currentPg={currentPg} setCurrentPg={setCurrentPg} /> */}
+                <BtnPg  />
                 {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />
