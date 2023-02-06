@@ -1,0 +1,12 @@
+.btnPg-div{
+    margin: 15px;
+}
+button {
+    background-color: rgb(93, 187, 255);
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}

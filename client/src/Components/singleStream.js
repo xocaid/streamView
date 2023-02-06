@@ -6,8 +6,8 @@ import offline from '../Images/offline.png';
 function SingleStream({ singleCardP }) {
   return (
     <div className='singleStream-div'>
-      <div className='singleStream-img'>
-        <img src={singleCardP.thumbnail_url} alt={singleCardP.title}></img>
+      <div className='singleStreamImg-div'>
+        <img src={singleCardP.thumbnail_url} alt={singleCardP.title} className= 'singleStream-img'></img>
       </div>
       <div className='singleStream-general'>
         <div className='singleStream-isLive'>

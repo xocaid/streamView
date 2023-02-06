@@ -11,10 +11,12 @@ function MainPg() {
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
     const [searchStreams, setSearchStreams] = useState([]);
+    //Cursor value for API query parameter
     const [cursor, setCursor] = useState(null);
+    //States to store cursor values as you move back or to next pg
+    const [backBtn, setBackBtn] = useState(null);
+    const [nextBtn, setNextBtn] = useState(null);
     console.log('This is the cursor variable: ', cursor);
-    //PAGINATION
- 
 
     //FETCHING DATA - TWITCH TV API
     const fetchData = async queryParams => {
@@ -46,7 +48,6 @@ function MainPg() {
         }
     }, [accessToken]);
 
-
     //FILTER FUNCTION - SEARCH BAR
     const filterStreams = event => {
         const value = event.target.value.toLowerCase();
@@ -60,15 +61,13 @@ function MainPg() {
     }
 
     return (
-        <div className='mainpg-div'>MainPg Div
+        <div className='mainpg-div'>
             <div className='searchbar-div'>
-                Search Bar Div
                 <input className='search-bar' placeholder='Search Streams...' onInput={filterStreams}></input>
             </div>
 
             <div>
-                <h1>Stream Info Div</h1>
-                <BtnPg  />
+                <BtnPg />
                 {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />

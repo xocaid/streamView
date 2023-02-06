@@ -1,22 +1,20 @@
 import React from 'react'
+import './btnPg.css';
+
 
 function BtnPg() {
     const backPg = () => {
-        // if (currentPg !== 1)
-        //     setCurrentPg(currentPg - 1)
-            console.log('Back Pg Button Pressed')
+        console.log('Back Pg Button Pressed')
     }
 
     const nextPg = () => {
-        // if (currentPg !== totalPgs)
-        //     setCurrentPg(currentPg + 1)
-            console.log('Next Pg Button Pressed')
+        console.log('Next Pg Button Pressed')
     }
 
     return (
-        <div>
-            <button className='back-btn' onClick={backPg}>Back</button>
-            <button className='next-btn' onClick={nextPg}>Next</button>
+        <div className='btnPg-div'>
+            <button onClick={backPg}>Back</button>
+            <button onClick={nextPg}>Next</button>
         </div>
     )
 }

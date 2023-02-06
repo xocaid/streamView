@@ -1,13 +1,27 @@
-.mainpg-div{
-margin: 15px;
-border: 5px blue dashed;
+.mainpg-div {
+    margin: 15px;
 }
-.searchbar-div{
+
+.searchbar-div {
     margin: 5px;
-    border: 5px black dashed;
     padding: 10px;
 }
-.search-bar{
+
+.search-bar {
     width: 97%;
     align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgb(251, 190, 190);
+    font-size: 20px;
+}
+
+input,
+select,
+option {
+    color: rgb(63, 41, 41);
+}
+
+input:focus {
+    outline-color: rgb(93, 187, 255);
 }
