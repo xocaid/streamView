@@ -1,15 +1,17 @@
-import React from 'react'
+import React from 'react';
 import './btnPg.css';
 
 
-function BtnPg() {
+function BtnPg({onNext, onBack}) {
     const backPg = () => {
-        console.log('Back Pg Button Pressed')
-    }
+        console.log('Back Pg Button Pressed');
+        onBack();
+    };
 
     const nextPg = () => {
-        console.log('Next Pg Button Pressed')
-    }
+        console.log('Next Pg Button Pressed');
+        onNext();
+    };
 
     return (
         <div className='btnPg-div'>

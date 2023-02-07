@@ -16,7 +16,6 @@
 .singleStream-live {
     width: 12%;
     height: 12%;
-    filter: brightness(0) invert(1);
 }
 
 .singleStream-offline {
