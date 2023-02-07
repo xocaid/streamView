@@ -2,7 +2,7 @@ import React from 'react';
 import './btnPg.css';
 
 
-function BtnPg({onNext, onBack}) {
+function BtnPg({ onBack, onNext }) {
     const backPg = () => {
         console.log('Back Pg Button Pressed');
         onBack();

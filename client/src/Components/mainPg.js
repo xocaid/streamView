@@ -16,16 +16,12 @@ function MainPg() {
     const [cursor, setCursor] = useState(null);
     console.log('This is the cursor variable: ', cursor);
 
-    useEffect(() => {
-        if (accessToken) {
-            fetchData();
-        }
-    }, [accessToken]);
+
 
     //FETCHING DATA - TWITCH TV API
     const fetchData = useCallback(async queryParams => {
         try {
-            // console.log(`Print accessToken from mainPg, ${JSON.stringify(accessToken)}`);
+            console.log(`Print accessToken from mainPg, ${JSON.stringify(cursor)}`);
             const params = Object.assign({ query: 'game', first: LIMIT }, queryParams);
             const response = await axios.get(`https://api.twitch.tv/helix/search/channels?`,
                 {
@@ -34,30 +30,43 @@ function MainPg() {
                         'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
                     },
                     params,
+                    //other way of writing params instead of using Object.assign
+                    // {
+                    //     query: 'game',
+                    //     first: LIMIT,
+                    //     ...queryParams,
+                    //   }
                 }
             );
+            console.log(response.data.pagination.cursor, 'This is from line 44')
             console.log(response.data);
             setStreams(response.data.data);
             setSearchStreams(response.data.data);
-            setCursor(response.data.pagination.cursor);
+            setCursor(() => (response.data.pagination.cursor));
 
         } catch (error) {
             console.error(error);
             console.log('Error cannot print page.');
         }
     },
-        [accessToken]
+        [accessToken, cursor]
     );
+    useEffect(() => {
+        if (accessToken) {
+            fetchData();
+        }
+    }, [accessToken, fetchData]);
 
     const handlePagination = useCallback(paginate => {
         if (paginate === 'back') {
             //load previous pg
-
+            console.log('Back Pg...')
         } else {
             // load next pg
-
+            console.log('Next Pg....');
+            fetchData({ after: cursor });
         }
-    }, []);
+    }, [fetchData, cursor]);
 
     const onNext = useCallback(() => {
         handlePagination();
@@ -86,7 +95,7 @@ function MainPg() {
             </div>
 
             <div>
-                <BtnPg />
+                <BtnPg onBack={onBack} onNext={onNext} />
                 {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />
