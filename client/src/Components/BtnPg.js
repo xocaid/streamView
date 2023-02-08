@@ -5,7 +5,7 @@ import './btnPg.css';
 function BtnPg({ onBack, onNext }) {
     const backPg = () => {
         console.log('Back Pg Button Pressed');
-        onBack();
+        onBack('back');
     };
 
     const nextPg = () => {

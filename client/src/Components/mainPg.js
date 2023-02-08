@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useCallback } from 'react';
+import { useEffect, useState, useContext, useCallback, useRef} from 'react';
 import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
@@ -15,7 +15,9 @@ function MainPg() {
     //Cursor value for API query parameter
     const [cursor, setCursor] = useState(null);
     console.log('This is the cursor variable: ', cursor);
-
+    //Save Previous Cursor
+    const [pgNum, setPgNum] = useState(1);
+    const prevCursor = useRef(null);
 
 
     //FETCHING DATA - TWITCH TV API
@@ -53,13 +55,15 @@ function MainPg() {
     useEffect(() => {
         if (accessToken) {
             fetchData();
+            prevCursor.current = pgNum
         }
-    }, [accessToken]);
+    }, [accessToken, pgNum]);
 
     const handlePagination = useCallback(paginate => {
         if (paginate === 'back') {
             //load previous pg
             console.log('Back Pg...')
+            fetchData({ before: prevCursor});
         } else {
             // load next pg
             console.log('Next Pg....');
