@@ -22,7 +22,12 @@ function MainPg() {
     const fetchData = useCallback(async queryParams => {
         try {
             console.log(`Print accessToken from mainPg, ${JSON.stringify(cursor)}`);
-            const params = Object.assign({ query: 'game', first: LIMIT}, queryParams);
+            // const params = Object.assign({ query: 'game', first: LIMIT }, queryParams);
+            const params = {
+                query: 'game',
+                first: LIMIT,
+                ...queryParams,
+            }
             const response = await axios.get(`https://api.twitch.tv/helix/search/channels?`,
                 {
                     headers: {
@@ -30,12 +35,6 @@ function MainPg() {
                         'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID
                     },
                     params,
-//other way of writing params instead of using Object.assign
-                    // {
-                    //     query: 'game',
-                    //     first: LIMIT,
-                    //     ...queryParams,
-                    //   }
                 }
             );
             console.log(response.data.pagination.cursor, 'This is from line 44')
@@ -64,9 +63,9 @@ function MainPg() {
         } else {
             // load next pg
             console.log('Next Pg....');
-            fetchData({after:cursor});
+            fetchData({ after: cursor });
         }
-    }, [fetchData,cursor]);
+    }, [fetchData, cursor]);
 
     const onNext = useCallback(() => {
         handlePagination();
@@ -95,7 +94,7 @@ function MainPg() {
             </div>
 
             <div>
-                <BtnPg onBack={onBack} onNext={onNext}/>
+                <BtnPg onBack={onBack} onNext={onNext} />
                 {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />
