@@ -7,7 +7,7 @@ function SingleStream({ singleCardP }) {
   return (
     <div className='singleStream-div'>
       <div className='singleStreamImg-div'>
-        <img src={singleCardP.thumbnail_url} alt={singleCardP.title} className= 'singleStream-img'></img>
+        <img src={singleCardP.thumbnail_url} alt={singleCardP.title} className='singleStream-img'></img>
       </div>
       <div className='singleStream-general'>
         <div className='singleStream-isLive'>
@@ -41,7 +41,7 @@ function SingleStream({ singleCardP }) {
           </p>
         </div>
       </div>
-     </div>
+    </div>
   )
 }
 

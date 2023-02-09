@@ -16,8 +16,8 @@ function MainPg() {
     const [cursor, setCursor] = useState(null);
     console.log('This is the cursor variable: ', cursor);
     //Save Previous Cursor
-    const [pgNum, setPgNum] = useState(1);
-    const prevCursor = useRef(null);
+    // const [pgNum, setPgNum] = useState(1);
+    // const prevCursor = useRef(null);
 
 
     //FETCHING DATA - TWITCH TV API
@@ -55,15 +55,15 @@ function MainPg() {
     useEffect(() => {
         if (accessToken) {
             fetchData();
-            prevCursor.current = pgNum
+            // prevCursor.current = pgNum
         }
-    }, [accessToken, pgNum]);
+    }, [accessToken]);
 
     const handlePagination = useCallback(paginate => {
         if (paginate === 'back') {
             //load previous pg
             console.log('Back Pg...')
-            fetchData({ before: prevCursor});
+            fetchData({ before: cursor});
         } else {
             // load next pg
             console.log('Next Pg....');
@@ -72,10 +72,12 @@ function MainPg() {
     }, [fetchData, cursor]);
 
     const onNext = useCallback(() => {
+        // debugger;
         handlePagination();
     }, [handlePagination]);
 
     const onBack = useCallback(() => {
+        // debugger;
         handlePagination('back');
     }, [handlePagination]);
 
