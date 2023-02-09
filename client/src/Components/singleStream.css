@@ -1,27 +1,30 @@
 .singleStream-div {
     border: 2px solid rgb(93, 187, 255);
     display: flex;
+
 }
 
 .singleStream-general {
     text-align: justify;
-    /* margin: 8px; */
-    /* background-color: red; */
+    margin: 5px;
+    line-height: 1px;
 }
 
 .singleStreamImg-div {
     margin-top: 8px;
-    margin-right: 0px;
+    margin-bottom: 8px;
     padding: 0;
+}
 
+.singleStream-img {
+    height: 150px;
+    width: 150px;
 }
-.singleStream-img{
-    height:150px;
-    width:150px;
-}
+
 .singleStream-live {
-    width: 12%;
-    height: 12%;
+    width: 60px;
+    height: 60px;
+    margin-top: -15px;
 }
 
 .singleStream-offline {

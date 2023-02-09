@@ -41,7 +41,7 @@ function SingleStream({ singleCardP }) {
           </p>
         </div>
       </div>
-    </div>
+     </div>
   )
 }
 
