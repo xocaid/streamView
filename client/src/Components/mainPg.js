@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useCallback, useRef} from 'react';
+import { useEffect, useState, useContext, useCallback, useRef } from 'react';
 import SingleStream from './singleStream';
 import { APIContext } from './api';
 import axios from 'axios';
@@ -16,7 +16,7 @@ function MainPg() {
     const [cursor, setCursor] = useState(null);
     console.log('This is the cursor variable: ', cursor);
     //Save Previous Cursor
-    // const [pgNum, setPgNum] = useState(1);
+    const [pgNum, setPgNum] = useState(1);
     // const prevCursor = useRef(null);
 
 
@@ -55,52 +55,44 @@ function MainPg() {
     useEffect(() => {
         if (accessToken) {
             fetchData();
-            // prevCursor.current = pgNum
         }
     }, [accessToken]);
 
-    const handlePagination = useCallback(paginate => {
+    const handlePagination = useCallback(async paginate => {
         if (paginate === 'back') {
             //load previous pg
-            console.log('Back Pg...')
-            fetchData({ before: cursor});
+            console.log('Back Pg...');
+            await fetchData({ before: cursor });
+            setPgNum(prevPg => prevPg - 1);
         } else {
             // load next pg
-            console.log('Next Pg....');
-            fetchData({ after: cursor });
+            console.log('Next Pg...');
+            await fetchData({ after: cursor });
+            setPgNum(prevPg => prevPg + 1);
         }
-    }, [fetchData, cursor]);
+    },
+        [fetchData, cursor]);
 
     const onNext = useCallback(() => {
-        // debugger;
+        console.log('Next Pg Button Pressed');
         handlePagination();
     }, [handlePagination]);
 
     const onBack = useCallback(() => {
-        // debugger;
-        handlePagination('back');
-    }, [handlePagination]);
-
-    //FILTER FUNCTION - SEARCH BAR
-    const filterStreams = event => {
-        const value = event.target.value.toLowerCase();
-        const filteredStreams = searchStreams.filter(
-            stream => (`${stream.display_name} ${stream.game_name} ${stream.tags} ${stream.broadcaster_language}`
-                .toLowerCase()
-                .includes(value))
-        )
-        //setStreams(filteredStreams) displays filtered streams from search bar
-        setStreams(filteredStreams);
-    }
+        console.log('Back Pg Button Pressed');
+        if (pgNum > 1) {
+            handlePagination('back');
+        }
+    }, [handlePagination, pgNum]);
 
     return (
         <div className='mainpg-div'>
             <div className='searchbar-div'>
-                <input className='search-bar' placeholder='Search Streams...' onInput={filterStreams}></input>
+                <input className='search-bar' placeholder='Search Streams...' ></input>
             </div>
 
             <div>
-                <BtnPg onBack={onBack} onNext={onNext} />
+                <BtnPg onBack={onBack} onNext={onNext} currentPg={pgNum} />
                 {streams.map((stream, index) => {
                     return (
                         <SingleStream key={index} singleCardP={stream} />

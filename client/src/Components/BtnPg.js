@@ -2,23 +2,15 @@ import React from 'react';
 import './btnPg.css';
 
 
-function BtnPg({ onBack, onNext }) {
-    const backPg = () => {
-        console.log('Back Pg Button Pressed');
-        onBack('back');
-    };
-
-    const nextPg = () => {
-        console.log('Next Pg Button Pressed');
-        onNext();
-    };
+function BtnPg({ currentPg, onBack, onNext }) {
 
     return (
         <div className='btnPg-div'>
-            <button onClick={backPg}>Back</button>
-            <button onClick={nextPg}>Next</button>
+            <button onClick={onBack} disabled={currentPg === 1}>Back</button>
+            <p>Page {currentPg} </p>
+            <button onClick={onNext}>Next</button>
         </div>
     )
-}
+};
 
 export default BtnPg;
