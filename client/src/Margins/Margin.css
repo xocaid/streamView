@@ -6,4 +6,7 @@
 
 .footerPg {
     margin: 15px;
+    font-size: 8px;
+    color: rgb(93, 187, 255);
+    font-weight: bold;
 }

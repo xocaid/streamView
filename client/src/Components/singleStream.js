@@ -19,23 +19,23 @@ function SingleStream({ singleCardP }) {
           <h1>{singleCardP.game_name}</h1>
         </div>
         <div className='singleStream-user'>
-          <p>{singleCardP.display_name}</p>
+          <p><b>{singleCardP.display_name}</b></p>
         </div>
         {/* Need to convert time */}
         <div className='singleStream-date'>
-          <p> Last Played:
+          <p> <b>Last Played:</b>
             {(singleCardP.started_at !== "")
-              ? singleCardP.started_at
+              ? singleCardP.started_at.toLocaleString()
               : ' Has Not Played'}
           </p>
         </div>
         <div>
           <p>
-            Language: {singleCardP.broadcaster_language.toUpperCase()}
+            <b>Language: </b>{singleCardP.broadcaster_language.toUpperCase()}
           </p>
         </div>
         <div className='singleStream-tags'>
-          <p>  Tags:{(singleCardP.tags.length >= 1)
+          <p>  <b>Tags:</b>{(singleCardP.tags.length >= 1)
             ? ' ' + singleCardP.tags + ' , '.slice(0, 1)
             : ''}
           </p>
