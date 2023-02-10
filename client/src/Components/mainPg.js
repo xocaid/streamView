@@ -28,7 +28,7 @@ function MainPg() {
             console.log(`Print accessToken from mainPg, ${JSON.stringify(cursor)}`);
             // const params = Object.assign({ query: 'game', first: LIMIT }, queryParams);
             const params = {
-                query: 'game',
+                query: query.current,
                 first: LIMIT,
                 ...queryParams,
             }
@@ -89,10 +89,10 @@ function MainPg() {
     const handleSearch = useCallback(async () => {
         console.log('handleSearch: ', searchInputRef.current?.value);
         const value = searchInputRef.current?.value;
-        if(value){
-            query.current=value;
+        if (value) {
+            query.current = value;
             await fetchData()
-        }else{
+        } else {
             console.log('Please enter a valid search query.')
         }
     }, [fetchData]);
@@ -100,7 +100,7 @@ function MainPg() {
     return (
         <div className='mainpg-div'>
             <div className='searchbar-div'>
-                <input className='search-bar' placeholder='Search Streams...' ref ={searchInputRef}></input>
+                <input className='search-bar' placeholder='Search Streams...' ref={searchInputRef}></input>
                 <button onClick={handleSearch}>Search</button>
             </div>
 
