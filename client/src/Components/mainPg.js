@@ -102,6 +102,8 @@ function MainPg() {
             <div className='searchbar-div'>
                 <input className='search-bar' placeholder='Search Streams...' ref={searchInputRef}></input>
                 <button onClick={handleSearch}>Search</button>
+                {/* Clears the search bar, but does not reset */}
+                <button onClick={() => searchInputRef.current.value = ''}>Clear</button>
             </div>
 
             <div>
