@@ -101,7 +101,7 @@ function MainPg() {
                 <input className='search-bar' placeholder='Search Streams...' ref={searchInputRef}></input>
                 <button onClick={handleSearch}>Search</button>
                 {/* Clears the search bar, but does not reset & gives me the please enter valid query on line 94 */}
-                <button onClick={() => handleSearch(searchInputRef.current.value = '') && fetchData()}>Reset</button>
+                <button onClick={() => handleSearch(searchInputRef.current.value = '') && fetchData({query: 'game'})}>Reset</button>
             </div>
 
             <div>
