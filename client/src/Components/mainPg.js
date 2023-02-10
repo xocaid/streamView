@@ -11,7 +11,6 @@ function MainPg() {
     //useContext: to read APIContext. Provider
     const { accessToken } = useContext(APIContext);
     const [streams, setStreams] = useState([]);
-    const [searchStreams, setSearchStreams] = useState([]);
     //Cursor value for API query parameter
     const [cursor, setCursor] = useState(null);
     // Current Page Number
@@ -43,7 +42,6 @@ function MainPg() {
             );
             console.log(response.data);
             setStreams(response.data.data);
-            setSearchStreams(response.data.data);
             setCursor(response.data.pagination.cursor);
 
         } catch (error) {
@@ -102,8 +100,8 @@ function MainPg() {
             <div className='searchbar-div'>
                 <input className='search-bar' placeholder='Search Streams...' ref={searchInputRef}></input>
                 <button onClick={handleSearch}>Search</button>
-                {/* Clears the search bar, but does not reset */}
-                <button onClick={() => searchInputRef.current.value = ''}>Clear</button>
+                {/* Clears the search bar, but does not reset & gives me the please enter valid query on line 94 */}
+                <button onClick={() => handleSearch(searchInputRef.current.value = '') && fetchData()}>Reset</button>
             </div>
 
             <div>
