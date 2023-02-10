@@ -14,10 +14,12 @@ function MainPg() {
     const [searchStreams, setSearchStreams] = useState([]);
     //Cursor value for API query parameter
     const [cursor, setCursor] = useState(null);
-    console.log('This is the cursor variable: ', cursor);
-    //Save Previous Cursor
+    // Current Page Number
     const [pgNum, setPgNum] = useState(1);
-    // const prevCursor = useRef(null);
+    //Ref for Search Bar 
+    const searchInputRef = useRef(null);
+    //Ref for query parameter
+    const query = useRef('game');
 
 
     //FETCHING DATA - TWITCH TV API
@@ -39,7 +41,6 @@ function MainPg() {
                     params,
                 }
             );
-            console.log(response.data.pagination.cursor, 'This is from line 44')
             console.log(response.data);
             setStreams(response.data.data);
             setSearchStreams(response.data.data);
@@ -85,10 +86,22 @@ function MainPg() {
         }
     }, [handlePagination, pgNum]);
 
+    const handleSearch = useCallback(async () => {
+        console.log('handleSearch: ', searchInputRef.current?.value);
+        const value = searchInputRef.current?.value;
+        if(value){
+            query.current=value;
+            await fetchData()
+        }else{
+            console.log('Please enter a valid search query.')
+        }
+    }, [fetchData]);
+
     return (
         <div className='mainpg-div'>
             <div className='searchbar-div'>
-                <input className='search-bar' placeholder='Search Streams...' ></input>
+                <input className='search-bar' placeholder='Search Streams...' ref ={searchInputRef}></input>
+                <button onClick={handleSearch}>Search</button>
             </div>
 
             <div>

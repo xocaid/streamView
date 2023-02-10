@@ -1,5 +1,8 @@
 .btnPg-div {
     margin: 15px;
+    display: flex;
+    font-weight: bold;
+    font-size:large;
 }
 
 button {
@@ -21,4 +24,10 @@ button:hover {
 button:active {
     background-color: rgb(93, 187, 255);
     color: rgb(93, 187, 255);
+}
+
+button:disabled {
+    background-color: grey;
+    border: none;
+    color: white;
 }
