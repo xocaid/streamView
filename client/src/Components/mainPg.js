@@ -6,6 +6,7 @@ import './mainPg.css';
 import BtnPg from './BtnPg';
 
 const LIMIT = 5;
+const defaultQuery= 'game';
 
 function MainPg() {
     //useContext: to read APIContext. Provider
@@ -17,9 +18,8 @@ function MainPg() {
     const [pgNum, setPgNum] = useState(1);
     //Ref for Search Bar 
     const searchInputRef = useRef(null);
-    //Ref for query parameter
-    //would move outside and default query, use that variable in useRef,  & reset use that outside variable again.
-    const query = useRef('game');
+    //Ref for query parameter; using the defaultQuery so value can be reused instead of entering value everywhere.
+    const query = useRef(defaultQuery);
 
 
     //FETCHING DATA - TWITCH TV API
@@ -106,7 +106,7 @@ function MainPg() {
                 <button onClick={() => {
                     searchInputRef.current.value = '';
                     //needs to be reset because it's still using the old value from the search. 
-                    query.current = 'game';
+                    query.current = defaultQuery;
                     fetchData();
                     setPgNum(1);
                 }}>Reset</button>
