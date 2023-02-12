@@ -25,7 +25,7 @@ function SingleStream({ singleCardP }) {
         <div className='singleStream-date'>
           <p> <b>Last Played:</b>
             {(singleCardP.started_at !== "")
-              ? singleCardP.started_at.toLocaleString()
+              ? new Date(singleCardP.started_at).toDateString()
               : ' Has Not Played'}
           </p>
         </div>

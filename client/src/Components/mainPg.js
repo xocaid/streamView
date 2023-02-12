@@ -18,6 +18,7 @@ function MainPg() {
     //Ref for Search Bar 
     const searchInputRef = useRef(null);
     //Ref for query parameter
+    //would move outside and default query, use that variable in useRef,  & reset use that outside variable again.
     const query = useRef('game');
 
 
@@ -100,9 +101,15 @@ function MainPg() {
         <div className='mainpg-div'>
             <div className='searchbar-div'>
                 <input className='search-bar' placeholder='Search Streams...' ref={searchInputRef}></input>
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={() => handleSearch() && setPgNum(1)}>Search</button>
                 {/* Clears the search bar, but does not reset & gives me the please enter valid query on line 94 */}
-                <button onClick={() => handleSearch(searchInputRef.current.value = '') && fetchData({ query: 'game' })}>Reset</button>
+                <button onClick={() => {
+                    searchInputRef.current.value = '';
+                    //needs to be reset because it's still using the old value from the search. 
+                    query.current = 'game';
+                    fetchData();
+                    setPgNum(1);
+                }}>Reset</button>
             </div>
 
             <div>
