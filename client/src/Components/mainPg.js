@@ -5,8 +5,9 @@ import axios from 'axios';
 import './mainPg.css';
 import BtnPg from './BtnPg';
 
+
 const LIMIT = 5;
-const defaultQuery= 'game';
+const defaultQuery = 'game';
 
 function MainPg() {
     //useContext: to read APIContext. Provider
