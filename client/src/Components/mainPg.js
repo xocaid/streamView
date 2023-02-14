@@ -4,7 +4,7 @@ import { APIContext } from './api';
 import axios from 'axios';
 import './mainPg.css';
 import BtnPg from './BtnPg';
-
+import sample from './sample';
 
 const LIMIT = 5;
 const defaultQuery = 'game';
@@ -94,7 +94,9 @@ function MainPg() {
             query.current = value;
             await fetchData()
         } else {
-            console.log('Please enter a valid search query.')
+            //if search bar is empty, you get a window alert
+            console.log('Please enter a valid search query.');
+            alert('Please enter a valid search.')
         }
     }, [fetchData]);
 
