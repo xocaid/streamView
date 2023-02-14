@@ -1,10 +1,13 @@
 import React from 'react';
 import './Margin.css';
 
+let currentDate = new Date();
+let year = currentDate.getFullYear()
+
 function Footer() {
   return (
     <div className='footerPg'>
-        <p>Copyright &copy; 2023 Across the Streams. All Rights Reserved.</p>
+      <p>Copyright &copy; {year} Across the Streams. All Rights Reserved.</p>
     </div>
   )
 }
