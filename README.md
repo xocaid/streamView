@@ -4,7 +4,7 @@
 
 Creating a React based web application, built ina searchable API endpoint.
 
-##Website:
+Website:
 https://github.sie.sony.com/pages/xcruzaguilera/acrossTheStreams
 
 ### Goal:
