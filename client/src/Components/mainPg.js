@@ -117,14 +117,17 @@ function MainPg() {
 
             <div>
                 <BtnPg onBack={onBack} onNext={onNext} currentPg={pgNum} />
-
-                    {streams.map((stream, index) => {
+                {!streams ?
+                    (<p>No results.</p>)
+                    :
+                    (streams.map((stream, index) => {
                         return (
                             <SingleStream key={index} singleCardP={stream} />
-                            
-                            )
-                    })}
-                    
+
+                        )
+                    }))
+                }
+
             </div>
         </div>
     )
