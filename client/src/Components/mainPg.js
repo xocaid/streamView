@@ -4,7 +4,6 @@ import { APIContext } from './api';
 import axios from 'axios';
 import './mainPg.css';
 import BtnPg from './BtnPg';
-import sample from './sample';
 
 const LIMIT = 5;
 const defaultQuery = 'game';
