@@ -117,7 +117,7 @@ function MainPg() {
             <div>
                 <BtnPg onBack={onBack} onNext={onNext} currentPg={pgNum} />
                 {(streams.length === 0) ?
-                    (<p>No results.</p>)
+                    (<h1>No results.</h1>)
                     :
                     (streams.map((stream, index) => {
                         return (
