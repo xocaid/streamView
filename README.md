@@ -1,4 +1,4 @@
-# Across the Streams!
+# Stream View!
 
 ### A Beginner JavaScript and React.js based web application.
 Create a React based web application with a built-in searchable API endpoint.
