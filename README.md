@@ -15,5 +15,5 @@ Search for a given stream from Twitch.tv, and display the stream results in a pa
 
 ### Website
 To see the app in action, visit:
-https://github.sie.sony.com/pages/xcruzaguilera/acrossTheStreams
+
 
